@@ -1,3 +1,4 @@
+import os
 import unittest
 from unittest.mock import MagicMock, patch
 
@@ -7,7 +8,7 @@ from chat_client import ChatClient, ChatMessage, SystemMessage, UserMessage
 class TestChatClient(unittest.TestCase):
     def setUp(self):
         """Настройка тестовой среды перед каждым тестом."""
-        self.api_key = "test_api_key"
+        self.api_key = os.getenv('OPENAI_API_KEY', 'OPENAI_API_KEY')
         self.client = ChatClient(api_key=self.api_key)
 
     @patch("openai.ChatCompletion.create")
